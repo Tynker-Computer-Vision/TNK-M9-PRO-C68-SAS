@@ -19,17 +19,18 @@ yoloNetwork = cv2.dnn.readNetFromDarknet(modelConfiguration, modelWeights)
 
 video = cv2.VideoCapture("bb2.mp4")
 
-# Flag variable o show whether basketball is detected or not
+# Flag variable to show whether basketball is detected or not
 detected = False
 
 
-# Define the function to draw the bounding box
+
 def drawBox(img, bbox):
     x = int(bbox[0])
     y = int(bbox[1])
     w = int(bbox[2])
     h = int(bbox[3])
 
+    # Draw rectangle and display a notification Tracking
     cv2.rectangle(img, (x, y), ((x+w), (y+h)), (255, 0, 255), 3, 1)
     cv2.putText(img, "Tracking", (75, 90),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
@@ -42,7 +43,7 @@ while True:
     dimensions = image.shape[:2]
     H, W = dimensions
 
-    # Only detect the ball if not detected
+    # Detect the ball only if not detected earlier
     if detected == False:
         blob = cv2.dnn.blobFromImage(image, 1/255, (416, 416))
         yoloNetwork.setInput(blob)

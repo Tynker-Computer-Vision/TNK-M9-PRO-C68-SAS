@@ -5,7 +5,6 @@ import cv2
 import math
 
 
-# Set the position of goal
 goalX = 200
 goalY = 70
 
@@ -54,7 +53,7 @@ def goalTrack(img, bbox):
     c1 = x + int(w/2)
     c2 = y + int(h/2)
 
-    # Draw a small circle using CENTER POINTS for goalpost and basketball
+    # Draw circles for CENTER POINTS of goalpost and basketball
     cv2.circle(img, (c1, c2), 2, (0, 0, 255), 5)
 
     cv2.circle(img, (int(goalX), int(goalY)), 2, (0, 255, 0), 3)
@@ -62,7 +61,7 @@ def goalTrack(img, bbox):
     # Calculate Distance
     dist = math.sqrt(((c1-goalX)**2) + (c2-goalY)**2)
 
-    # Goal is reached if distance is less than 20 pixel points
+    # Display a "Goal" notification only if distance between ball and goalpoast is less than 20 pixel points
     if (dist <= 20):
         cv2.putText(img, "Goal", (300, 90),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)

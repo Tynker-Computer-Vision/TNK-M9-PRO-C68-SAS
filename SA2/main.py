@@ -1,9 +1,9 @@
 import numpy as np
 import cv2
 
-# Trajectory arrayCords
-xCords = []
-yCords = []
+# Trajectory array Coords
+xCoords = []
+yCoords = []
 
 tracker = cv2.legacy.TrackerCSRT_create()
 
@@ -46,13 +46,13 @@ def goalTrack(img, bbox):
     c1 = x + int(w/2)
     c2 = y + int(h/2)
 
-    # Append the center points c1 and c2 to xCords and yCords respectively
-    xCords.append(c1)
-    yCords.append(c2)
+    # Append the center points c1 and c2 to xCoords and yCoords respectively
+    xCoords.append(c1)
+    yCoords.append(c2)
 
     # Draw the circles for the previous center points
-    for i in range(len(xCords)-1):
-        cv2.circle(img, (xCords[i], yCords[i]), 2, (0, 0, 255), 5)
+    for i in range(len(xCoords)-1):
+        cv2.circle(img, (xCoords[i], yCoords[i]), 2, (0, 0, 255), 5)
 
 
 while True:
